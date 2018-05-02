@@ -187,8 +187,6 @@ namespace Lucene.Net.Messages
                 return ;
 			
 			// Set a value for this empty field.
-			if (!isFieldAccessible)
-				MakeAccessible(field);
 			try
 			{
 				field.SetValue(null, field.Name);
@@ -232,22 +230,6 @@ namespace Lucene.Net.Messages
 				// ignore all other errors and exceptions
 				// since this code is just a test to see if the message is present on the
 				// system
-			}
-		}
-		
-		/*
-		* Make a class field accessible
-		*/
-		//@SuppressWarnings("unchecked")
-		private static void  MakeAccessible(System.Reflection.FieldInfo field)
-		{
-			if (System.Security.SecurityManager.SecurityEnabled)
-			{
-				//field.setAccessible(true);   // {{Aroush-2.9}} java.lang.reflect.AccessibleObject.setAccessible
-			}
-			else
-			{
-                //AccessController.doPrivileged(new AnonymousClassPrivilegedAction(field));     // {{Aroush-2.9}} java.security.AccessController.doPrivileged
 			}
 		}
 	}
